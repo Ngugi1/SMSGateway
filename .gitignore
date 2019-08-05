@@ -36,3 +36,4 @@ yarn-error.log
 testem.log
 
 /smsenv
+.pydevproject
