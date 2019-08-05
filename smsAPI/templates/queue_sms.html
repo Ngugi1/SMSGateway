@@ -1,0 +1,113 @@
+<html>
+
+<head>
+    <title>Queue SMS</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    
+</head>
+
+<body>
+    <div class="container">
+    			{% with messages = get_flashed_messages() %}
+	            {% for message in messages %}
+	            <div class="alert alert-primary" role="alert">
+				  	{{ messages }}
+				</div>
+	            {% endfor %}
+	            {% endwith %}
+	            
+       <div class="row">
+       		<div class="col-sm">
+		        <form action="/dispatch_sms" method="POST">
+						<div class="card text-center" >
+							  <div class="card-header">
+							    Direct SMS
+							  </div>
+							  <div class="card-body">
+							    <h5 class="card-title"> SMS Manager</h5>
+							  <div class="form-group">
+							    <label for="provider_direct">Provider</label>
+							    <select class="form-control" id="provider_direct" name="provider_direct">
+							    	<option value='nexmo'>Nexmo</option>
+							    	<option value='africastalking'>Africa Stalking</option>
+							    </select>
+							  </div>
+							  	<div class="form-group">
+								    <label for="destination">Mobile No.</label>
+								    <input type="tel" class="form-control" id="destination_number"name="destination_number"  aria-describedby="mobilenoHelp" placeholder="Enter Mobile Number">
+								    <small id="mobilenoHelp" class="form-text text-muted">Enter your destination Mobile No.</small>
+							  	</div>
+								<div class="form-group">
+								    <label for="content">Message Content</label>
+								    <textarea class="form-control" id="content" name="content" rows="3" placeholder="Enter you message here!"></textarea>
+							 	</div>
+							  	<button type="submit" class="btn btn-primary">Direct SMS</button>
+						  
+							  </div>
+							  <div class="card-footer text-muted">
+							    Direct
+							  </div>
+						</div>
+				</form>
+			</div>
+			<div class="col-sm">
+			
+		        <form action="/dispatch_queue" method="POST">
+						<div class="card text-center">
+							  <div class="card-header">
+							    SMS Queue
+							  </div>
+							  <div class="card-body">
+							    <h5 class="card-title"> SMS Queue Manager</h5>
+							  <div class="form-group">
+							    <label for="provider_queue">Queue Provider</label>
+							    <select class="form-control" id="provider_queue" name="provider_queue">
+							    	<option value='nexmo'>Nexmo</option>
+							    	<option value='africastalking'>Africa Stalking</option>
+							    </select>
+							  </div>
+							  	<div class="form-group">
+								    <label for="destination">Mobile No.</label>
+								    <input type="tel" class="form-control" id="destination_number_queue"name="destination_number_queue"  aria-describedby="mobilenoHelp" placeholder="Enter Mobile Number">
+								    <small id="mobilenoHelp" class="form-text text-muted">Enter your destination Mobile No.</small>
+							  	</div>
+							  <div class="form-group">
+							  		<button type="button" class="btn btn-primary" id="addtoqueue">Add to Queue</button>
+							  </div>
+							  <div class="form-group">
+							    <label for="destinations">Destination Queue</label>
+							    <textarea class="form-control" id="destination_numbers" name="destination_numbers" rows="2" placeholder="Queue Numbers"></textarea>
+							  </div>
+								<div class="form-group">
+								    <label for="content">Message Content</label>
+								    <textarea class="form-control" id="content" name="content" rows="3" placeholder="Enter you message here!"></textarea>
+							 	</div>
+							  	<button type="submit" class="btn btn-primary">Process Queue</button>
+						  
+							  </div>
+							  <div class="card-footer text-muted">
+							    Queue
+							  </div>
+						</div>
+				</form>
+			</div>
+		</div>
+    </div>
+</body>
+<script type="text/javascript">
+	(function() { 
+		root = window || this;
+		$('#addtoqueue').click(function (e) {
+			if($("#destination_numbers").val().trim().length > 0){
+				var oList = $("#destination_numbers").append(',' + $('#destination_number_queue').val());
+			}else{
+				var oList = $("#destination_numbers").append($('#destination_number_queue').val());
+			}
+			
+	      });
+	}).call(this);
+</script>
+
+</html>
