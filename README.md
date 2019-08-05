@@ -42,6 +42,8 @@ $ FLASK_APP=queue_sms.py flask run
 Fire the browser and use the url below:
 http://127.0.0.1:5000/ or http://localhost:5000/
 
+###### Front End Screenshot
+![Alt text](images/webImage.png?raw=true "Screenshot")
 
 
 

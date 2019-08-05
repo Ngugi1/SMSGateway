@@ -37,3 +37,4 @@ testem.log
 
 /smsenv
 .pydevproject
+.DS_Store
