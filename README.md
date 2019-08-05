@@ -23,12 +23,12 @@ $ pip install -r dependencies.txt
 $ sudo nano .env
 ```
 
-#### Envirometal variables
+#### Envirometal variables from `https://dashboard.nexmo.com/`
 FLASK_DEBUG=true
 FLASK_SECRET_KEY=RANDOM-STRING_CHANGE-123-Ea359
-NEXMO_NUMBER=254721881745
-NEXMO_API_KEY=be6607ac
-NEXMO_API_SECRET=m5p48lzc1PFCoL0U
+NEXMO_NUMBER=YOUR_NUMBER
+NEXMO_API_KEY=YOUR_KEY
+NEXMO_API_SECRET=YOUR_SECRET_KEY
 
 ###### Set Configuration
 ``` bash
