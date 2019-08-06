@@ -100,10 +100,11 @@
 	(function() { 
 		root = window || this;
 		$('#addtoqueue').click(function (e) {
+			var oList;
 			if($("#destination_numbers").val().trim().length > 0){
-				var oList = $("#destination_numbers").append(',' + $('#destination_number_queue').val());
+				oList = $("#destination_numbers").append(',' + $('#destination_number_queue').val());
 			}else{
-				var oList = $("#destination_numbers").append($('#destination_number_queue').val());
+				oList = $("#destination_numbers").append($('#destination_number_queue').val());
 			}
 			
 	      });
