@@ -71,7 +71,7 @@ def dispatch_sms():
         flash("Message Successfully sent to " + destination_number)
 
     
-    return redirect(url_for('queue_sms'))
+    return redirect(url_for('index'))
 
 @app.route('/dispatch_queue', methods=['POST'])
 def dispatch_queue():
@@ -103,4 +103,4 @@ def dispatch_queue():
         flash("Message Successfully sent to " + destination_number)
 
     
-    return redirect(url_for('queue_sms'))
+    return redirect(url_for('index'))
