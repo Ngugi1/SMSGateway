@@ -23,14 +23,17 @@ $ pip install -r dependencies.txt
 $ sudo nano .env
 ```
 
-#### Envirometal variables from `https://dashboard.nexmo.com/`
+#### Envirometal variables from `https://dashboard.nexmo.com/` and `https://account.africastalking.com`
 ``` bash
 FLASK_DEBUG=true
 FLASK_SECRET_KEY=RANDOM-STRING_CHANGE-123-Ea359
 NEXMO_NUMBER=YOUR_NUMBER
 NEXMO_API_KEY=YOUR_KEY
 NEXMO_API_SECRET=YOUR_SECRET_KEY
+ASTALKING_USERNAME=YOUR_USERNAME
+ASTALKING_API_KEY=YOUR_API_KEY
 ```
+
 
 ###### Set Configuration
 ``` bash
