@@ -46,7 +46,8 @@ def index():
 @app.route('/dispatch_sms', methods=['POST'])
 def dispatch_sms():
     """ A POST endpoint that sends an SMS. """
-
+    
+    err = None
     # form data
     provider_direct = request.form['provider_direct']
     destination_number = request.form['destination_number']
@@ -59,12 +60,15 @@ def dispatch_sms():
             'to': destination_number,
             'text': content,
         })
+        err = extract_error(result)
     else:
         # Send the SMS message Africa Stalking
         sms = africastalking.SMS
         result = sms.send(content, ["+" + destination_number])
 
-    err = extract_error(result)
+    
+    
+   
     if err is not None:
         flash("Error occurred sending message " + err, 'error')
     else:
@@ -76,7 +80,8 @@ def dispatch_sms():
 @app.route('/dispatch_queue', methods=['POST'])
 def dispatch_queue():
     """ A POST endpoint that sends an SMS. """
-
+    
+    err = None
     # form data
     provider_queue = request.form['provider_queue']
     destination_numbers = request.form['destination_numbers'].split(",")
@@ -95,12 +100,13 @@ def dispatch_queue():
             sms = africastalking.SMS
             result = sms.send(content, ["+" + destination_number])
 
-
-    err = extract_error(result)
+    if provider_queue == 'nexmo':
+        err = extract_error(result)
+    
     if err is not None:
         flash("Error occurred sending message " + err, 'error')
     else:
-        flash("Message Successfully sent to " + destination_number)
+        flash("Message Successfully sent to " + request.form['destination_numbers'])
 
     
     return redirect(url_for('index'))
